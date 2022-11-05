@@ -1,4 +1,5 @@
 function pullUser(){
+    //have to prevent sqlinjection
     let userCredentials = {
         username: document.getElementById("username").value,
         password: document.getElementById("password").value,
@@ -8,13 +9,12 @@ function pullUser(){
         url: '/receiver',
         type: 'POST',
         data: JSON.stringify(userCredentials),
-        success: function (response) {
-            let data = JSON.parse(response)
-            document.getElementById("test").innerHTML = data["hello"];
-            console.log("hello, world!");
-        },
+        success: function(response){responseHandler(response)},
         error: function(response){alert("something is wrong")}
     });
 }
 
-//have to prevent sqlinjection
+function responseHandler(response){
+    let data = JSON.parse(response);
+    document.getElementById("test").innerHTML = data["hello"];
+}
