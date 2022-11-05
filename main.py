@@ -19,7 +19,7 @@ def jsfile():
 def ajaxfile():
     return bottle.static_file('ajax.js',root='')
 
-@bottle.route('/receiver')
+@bottle.post('/receiver')
 def receiver():
     jsonBlob = bottle.request.body.read().decode()
     input = json.loads(jsonBlob)
@@ -37,3 +37,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+bottle.run(host='0.0.0.0',port=8080,debug=True)
