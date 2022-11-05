@@ -2,8 +2,6 @@ import mysql.connector
 
 def insertuser(username: str):
 
-
-
     config = {
         'user': 'hackathon',
         'password': 'hack',
