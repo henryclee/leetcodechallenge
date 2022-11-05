@@ -7,6 +7,15 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+'''
+@app.route('/', methods = ['POST])
+def index():
+    if request.methods == "POST":
+        username = request.form.get("username")
+        username = request.form.get("password")
+    return render_template("index.html")
+'''
+
 @app.route('/receiver', methods = ['POST'])
 def usercredentialsInfo():
     testdata = {"hello":40}
