@@ -2,6 +2,8 @@ import requests
 import mechanize
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
+
 
 """
 # Fill in your details here to be posted to the login form.
@@ -27,10 +29,11 @@ password = "TennisBalls123"
 driver = webdriver.Chrome("C:/Users/Morgan Li/Downloads/chromedriver_win3")
 driver.get("https://leetcode.com/accounts/login/")
 # find username/email field and send the username itself to the input field
-driver.find_element(By.ID, 'login').send_keys(user)
+driver.find_element(By.ID, 'id_login').send_keys(user)
 #password_form = driver.find_element(By.ID, 'password')
 
 # find password input field and insert password as well
-driver.find_element(By.ID, 'password').send_keys(password)
+driver.find_element(By.ID, 'id_password').send_keys(password)
 # click login button
 driver.find_element(By.ID, "signin_btn").click()
+print("good")
