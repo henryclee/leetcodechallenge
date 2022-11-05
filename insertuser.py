@@ -1,4 +1,5 @@
 import mysql.connector
+import removeuser
 
 def insertuser(username: str):
 
@@ -13,6 +14,14 @@ def insertuser(username: str):
     cnx = mysql.connector.connect(**config)
 
     cursor = cnx.cursor()
+
+    cursor.execute("SELECT userid FROM usertable WHERE leetcodeName = %s",[username])
+
+    user = 0
+    for id in cursor:
+        user = cursor[0]
+    if user == 0:
+        removeuser(username)
 
     cursor.execute("INSERT INTO usertable (leetcodeName) VALUES (%s)",[username])
 
