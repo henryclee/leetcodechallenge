@@ -3,25 +3,23 @@ import json
 
 app = Flask(__name__)
 
-@app.route('/')
-def index():
-    return render_template("index.html")
+username = ''
+password = ''
 
-'''
-@app.route('/', methods = ['POST])
+@app.route('/', methods = ['POST'])
 def index():
     if request.methods == "POST":
         username = request.form.get("username")
-        username = request.form.get("password")
+        password = request.form.get("password")
     return render_template("index.html")
-'''
 
+'''
 @app.route('/receiver', methods = ['POST'])
 def usercredentialsInfo():
     testdata = {"hello":40}
     testDataJson = json.dumps(testdata)
     return testDataJson
 
+'''
 if __name__ == "__main__":
     app.run(debug=True)
-
