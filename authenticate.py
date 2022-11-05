@@ -5,6 +5,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+import main
 
 
 
@@ -13,8 +14,8 @@ chrome_options = Options()
 chrome_options.add_experimental_option("detach", True)
 
 
-user = "UBHack2022"
-password = "TennisBalls123"
+user = main.username
+password = main.password
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options= chrome_options)
 
 driver.get("https://leetcode.com/accounts/login/")
