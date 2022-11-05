@@ -19,7 +19,7 @@ def jsfile():
 def ajaxfile():
     return bottle.static_file('ajax.js',root='')
 
-@bottle.route('/receiver')
+@bottle.post('/receiver')
 def receiver():
     jsonBlob = bottle.request.body.read().decode()
     input = json.loads(jsonBlob)
