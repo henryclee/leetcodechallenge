@@ -1,7 +1,8 @@
 import mysql.connector
 import removeuser
+import leetcode
 
-def insertuser(username: str):
+def insertuser(username: str, solved: int):
 
     config = {
         'user': 'hackathon',
@@ -23,7 +24,7 @@ def insertuser(username: str):
     if user == 0:
         removeuser(username)
 
-    cursor.execute("INSERT INTO usertable (leetcodeName) VALUES (%s)",[username])
+    cursor.execute("INSERT INTO usertable (leetcodeName, number_solved) VALUES (%s)",[username, solved])
 
     cnx.commit()
     cursor.close()
