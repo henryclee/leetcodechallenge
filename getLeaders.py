@@ -14,7 +14,7 @@ def getLeaders():
 
     cursor = cnx.cursor()
 
-    cursor.execute("SELECT leetcodeName, number_solved FROM usertable ORDER BY number_solved descending LIMIT 100")
+    cursor.execute("SELECT leetcodeName, number_solved FROM usertable ORDER BY number_solved DESC LIMIT 10")
 
     leaders = [(str,int)]
 
