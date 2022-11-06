@@ -14,12 +14,10 @@ def receiver():
     username = request.form['username']
     password = request.form['password']
     try:
-        arr = authenticate.authenticate(username, password)
-        # new = authenticate.authenticate(username, password)
-        """
+        # arr = authenticate.authenticate(username, password)
+        new = authenticate.authenticate(username, password)
         for key in new:
             arr[key] = new[key]
-        """
         print(arr)
     except:
         return "ERROR: There was an issue"
