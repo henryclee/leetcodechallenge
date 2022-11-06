@@ -15,8 +15,8 @@ def htmlfile():
 def jsfile():
     return bottle.static_file('index.js',root='')
 
-@bottle.post('/receiver')
-def receiver():
+@bottle.post('/userCred')
+def userCred():
     jsonBlob = bottle.request.body.read().decode()
     input = json.loads(jsonBlob)
     authenticate.authenticate(input['username'],input['password'])

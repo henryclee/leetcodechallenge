@@ -8,7 +8,7 @@ function pullUser(){
     }
 
     $.ajax({
-        url: '/receiver',
+        url: '/userCred',
         type: 'POST',
         data: JSON.stringify(userCredentials),
         success: function (response) {responseHandler(response)},
