@@ -4,6 +4,8 @@ import removeuser
 import bottle
 import json
 from authenticate import authenticateUser
+import HELPERadd
+
 
 @bottle.route('/')
 def htmlfile():
@@ -25,6 +27,7 @@ def receiver():
     password = userCred['password']
     login = authenticateUser(username, password)
     print(login)
+    HELPERadd.addUser_addQuestion(login["LEETCODE_SESSION"], login["csrftoken"])
     loginJson = json.dumps(username)
     return loginJson
 
