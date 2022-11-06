@@ -1,6 +1,6 @@
 import leetcode
-# import insertuser 
-# import insertproblem
+import insertuser 
+import insertproblem
 
 def addUser_addQuestion(session, token):
 
@@ -23,6 +23,15 @@ def addUser_addQuestion(session, token):
 
   api_instance = leetcode.DefaultApi(leetcode.ApiClient(configuration))
 
+  api_response=api_instance.api_problems_topic_get(topic="algorithms")
+
+  solved_questions=[]
+  for questions in api_response.stat_status_pairs:
+      if questions.status=="ac":
+          solved_questions.append(questions.stat.question__title)
+
+  
+
   graphql_request = leetcode.GraphqlQuery(
     query="""
       {
@@ -42,23 +51,23 @@ def addUser_addQuestion(session, token):
   username = dict["data"]["user"]["username"]
   print (username)
 
-  # insertuser.insertuser(username)
+  insertuser.insertuser(username, len(solved_questions))
 
   api_response=api_instance.api_problems_topic_get(topic="algorithms")
-  solved_questions=[]
+  #solved_questions=[]
   counter = 0
 
   for questions in api_response.stat_status_pairs:
 
     if questions.status=="ac":
     
-      solved_questions.append(questions.stat.question__title)
-      # insertproblem.insertproblem(username,questions)
-      print(questions.to_dict()["stat"]["question__title"])
-      counter+=1
+      #solved_questions.append(questions.stat.question__title)
+      insertproblem.insertproblem(username,questions.stat.question__title)
+      #print(questions.to_dict()["stat"]["question__title"])
+      #counter+=1
 
-  print()
-  print("Total number of solved questions ",len(solved_questions), "expected: ", counter)
-  print()
+  #print()
+  #print("Total number of solved questions ",len(solved_questions), "expected: ", counter)
+  #print()
 
 
