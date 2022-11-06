@@ -1,19 +1,13 @@
 "use strict"
 
 function pullUser(){
-    //have to prevent sqlinjection
-    let userObj = document.getElementById("username");
-    let passObj = document.getElementById("password");
-    let user = userObj.value;
-    let pass = passObj.value;
-    let userCredentials = {
-        username: user,
-        password: pass,
+    let userCred = {
+        username: document.getElementById("username").value,
+        password: document.getElementById("password").value
     }
-
-    console.log(user);
-    console.log(pass);
-
+    //console.log("Hello world")
+    let userCredJson = JSON.stringify(userCred)
+    ajaxPostRequest('/receiver', userCredJson, responseHandler)
 }
 
 function leaderboard(response) {

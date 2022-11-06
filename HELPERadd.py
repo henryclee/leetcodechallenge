@@ -1,6 +1,6 @@
 import leetcode
-# import insertuser 
-# import insertproblem
+import insertuser 
+import insertproblem
 
 def addUser_addQuestion(session, token):
 
@@ -42,7 +42,14 @@ def addUser_addQuestion(session, token):
   username = dict["data"]["user"]["username"]
   print (username)
 
-  # insertuser.insertuser(username)
+  solved_questions=[]
+  for questions in api_response.stat_status_pairs:
+      if questions.status=="ac":
+          solved_questions.append(questions.stat.question__title)
+  #print(solved_questions)
+  #print("Total number of solved questions ",len(solved_questions))
+
+  insertuser.insertuser(username, len(solved_questions))
 
   api_response=api_instance.api_problems_topic_get(topic="algorithms")
   solved_questions=[]
@@ -57,8 +64,8 @@ def addUser_addQuestion(session, token):
       print(questions.to_dict()["stat"]["question__title"])
       counter+=1
 
-  print()
-  print("Total number of solved questions ",len(solved_questions), "expected: ", counter)
-  print()
+  #print()
+  #print("Total number of solved questions ",len(solved_questions), "expected: ", counter)
+  #print()
 
 
