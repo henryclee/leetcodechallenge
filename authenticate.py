@@ -7,15 +7,15 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.action_chains import ActionChains
 import time
+import main
 
-def authenticate(username, password):
-    chrome_options = Options()
+#chrome_options = Options()
 
-    chrome_options.add_experimental_option("detach", True)
+#chrome_options.add_experimental_option("detach", True)
 
-    user = username
-    password = password
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options= chrome_options)
+# , options= chrome_options
+def authenticate(user, password):
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
     driver.get("https://leetcode.com/accounts/login/")
     driver.find_element(By.ID, 'id_login').send_keys(user)
@@ -25,9 +25,17 @@ def authenticate(username, password):
     action = ActionChains(driver)
     action.move_to_element(loginButton).click().perform()
 
-    time.sleep(3)
+    time.sleep(1)
 
     WebDriverWait(driver, 10000).until(EC.element_to_be_clickable((By.ID, 'signin_btn'))).click()
-    driver.find_element(By.ID, 'signin_btn').sendKeys(Keys.ENTER)
+    time.sleep(1)
+    cookies = driver.get_cookies()
+    arr = []
+    for cookie in cookies:
+        if cookie["name"] == "LEETCODE_SESSION":
+            arr.append(["LEETCODE_SESSION", cookie["value"]])
+        if cookie["name"] == "csrftoken":
+            arr.append(["csrftoken", cookie["value"]])
+    return arr
 
-    driver.find_element(By.ID, "signin_btn").click()
+authenticate("UBHack2022", "TennisBalls123")
