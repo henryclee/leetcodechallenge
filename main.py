@@ -3,19 +3,19 @@ import insertuser
 import removeuser
 import bottle
 import json
-import authenticate
+from authenticate import authenticateUser
 
 @bottle.route('/')
 def htmlfile():
-    return bottle.static_file('index.html',root='')
+    return bottle.static_file('index.html',root='.')
 
 @bottle.route('/index.js')
 def jsfile():
-    return bottle.static_file('index.js',root='')
+    return bottle.static_file('index.js',root='.')
 
 @bottle.route('/ajax.js')
 def ajaxfile():
-    return bottle.static_file('ajax.js',root='')
+    return bottle.static_file('ajax.js',root='.')
 
 @bottle.post('/receiver')
 def receiver():
@@ -23,7 +23,7 @@ def receiver():
     userCred = json.loads(jsonBlob)
     username = userCred['username']
     password = userCred['password']
-    login = authenticate.authenticate(username, password)
+    login = authenticateUser(username, password)
     print(login)
     loginJson = json.dumps(username)
     return loginJson
