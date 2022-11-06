@@ -2,6 +2,9 @@ import mysql.connector
 
 def insertproblem(name: str, problem: str):
 
+    print ("name:" + name)
+    print ("problem:" + problem)
+
     config = {
         'user': 'hackathon',
         'password': 'hack',
@@ -28,16 +31,10 @@ def insertproblem(name: str, problem: str):
     for p in cursor:
         problem = p[0]
 
-    #print (str(user) + " " + str(problem))
+    print (str(user) + " " + str(problem))
 
     cursor.execute("INSERT INTO solved (userid, problemid) VALUES (%s,%s)",[user,problem])
 
     cnx.commit()
     cursor.close()
     cnx.close()
-
-def main():
-    insertproblem("test2","Closest Fair Integer")
-
-if __name__ == "__main__":
-    main()

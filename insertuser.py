@@ -15,15 +15,16 @@ def insertuser(username: str, solved: int):
 
     cursor = cnx.cursor()
 
-    cursor.execute("SELECT userid FROM usertable WHERE leetcodeName = %s",[username])
+#    cursor.execute("SELECT userid FROM usertable WHERE leetcodeName = %s",[username])
+#    user = 0
+#    for id in cursor:
+#        user = cursor[0]
+#    if user == 0:
+#        removeuser(username)       
 
-    user = 0
-    for id in cursor:
-        user = cursor[0]
-    if user == 0:
-        removeuser(username)
-
-    cursor.execute("INSERT INTO usertable (leetcodeName, number_solved) VALUES (%s)",[username, solved])
+    #print ("username: " + username)
+    #print ("solved: " + str(solved))
+    cursor.execute("INSERT INTO usertable (leetcodeName, number_solved) VALUES (%s,%s)",[username, solved])
 
     cnx.commit()
     cursor.close()
