@@ -11,8 +11,8 @@ def index():
         username = request.form['username']
         password = request.form['password']
         try:
-            authenticate.authenticate(username, password)
             arr = authenticate.authenticate(username, password)
+            print(arr)
             return redirect('/')
         except:
             return "There was an issue"
