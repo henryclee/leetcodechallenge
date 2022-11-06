@@ -23,12 +23,9 @@ def receiver():
     userCred = json.loads(jsonBlob)
     username = userCred['username']
     password = userCred['password']
-    try:
-        login = authenticate.authenticate(username, password)
-        print(login)
-    except:
-        return "ERROR: There was an issue"
-    loginJson = json.dumps(login)
+    login = authenticate.authenticate(username, password)
+    print(login)
+    loginJson = json.dumps(username)
     return loginJson
 
 def main():

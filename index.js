@@ -9,7 +9,7 @@ function getData(){
 }
 
 function responseHandler(response){
-    console.log("Hello world")
+    console.log("there is a response")
     let userCred = JSON.parse(response)
     console.log(userCred)
 }
