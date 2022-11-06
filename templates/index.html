@@ -5,7 +5,7 @@
 
 {% block body %}
 <div class="form">
-    <form action="/" method="POST">
+    <form action="/receiver" method="POST">
         Username: <input type="text" name="username" id="username">
         <br>
         Password: <input type="text" name="password" id="password">
@@ -13,4 +13,12 @@
         <input type="submit" value="Add">
     </form>
 </div>
+<!-- <table>
+    {% for item in arr %}
+    <tr>
+        <td>{{ item }}</td>
+        <td>{{ arr[item] }}</td>
+    </tr>
+    {% endfor %}
+</table> -->
 {% endblock %}

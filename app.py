@@ -3,21 +3,27 @@ import authenticate
 
 app = Flask(__name__)
 
-arr = []
+arr = {}
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        try:
-            arr = authenticate.authenticate(username, password)
-            print(arr)
-            return redirect('/')
-        except:
-            return "There was an issue"
-    else:
-        return render_template('index.html')
+    return render_template('index.html')
+
+@app.route('/receiver', methods=['POST'])
+def receiver():
+    username = request.form['username']
+    password = request.form['password']
+    try:
+        arr = authenticate.authenticate(username, password)
+        # new = authenticate.authenticate(username, password)
+        """
+        for key in new:
+            arr[key] = new[key]
+        """
+        print(arr)
+    except:
+        return "ERROR: There was an issue"
+    return render_template('index.html', arr=arr)
 
 if __name__ == "__main__":
     app.run(debug=True, threaded=True)
