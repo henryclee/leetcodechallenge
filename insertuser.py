@@ -1,6 +1,5 @@
 import mysql.connector
 import removeuser
-import leetcode
 
 def insertuser(username: str, solved: int):
 

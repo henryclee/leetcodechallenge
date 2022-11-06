@@ -38,4 +38,4 @@ def authenticate(user, password):
             arr.append(["csrftoken", cookie["value"]])
     return arr
 
-authenticate("UBHack2022", "TennisBalls123")
+#authenticate("UBHack2022", "TennisBalls123")
