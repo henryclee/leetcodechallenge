@@ -3,7 +3,7 @@ function getData(){
         username: document.getElementById("username").value,
         password: document.getElementById("password").value
     }
-    console.log("Hello world")
+    //console.log("Hello world")
     let userCredJson = JSON.stringify(userCred)
     ajaxPostRequest('/receiver', userCredJson, responseHandler)
 }
