@@ -7,34 +7,27 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.action_chains import ActionChains
 import time
-import main
 
-chrome_options = Options()
+def authenticate(username, password):
+    chrome_options = Options()
 
-chrome_options.add_experimental_option("detach", True)
+    chrome_options.add_experimental_option("detach", True)
 
+    user = username
+    password = password
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options= chrome_options)
 
-user = main.username
-password = main.password
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options= chrome_options)
+    driver.get("https://leetcode.com/accounts/login/")
+    driver.find_element(By.ID, 'id_login').send_keys(user)
+    driver.find_element(By.ID, 'id_password').send_keys(password)
+    loginButton = driver.find_element(By.ID, 'signin_btn')
 
-driver.get("https://leetcode.com/accounts/login/%22")
-driver.find_element(By.ID, 'id_login').send_keys(user)
-driver.find_element(By.ID, 'id_password').send_keys(password)
-loginButton = driver.find_element(By.ID, 'signin_btn')
+    action = ActionChains(driver)
+    action.move_to_element(loginButton).click().perform()
 
-action = ActionChains(driver)
-action.move_to_element(loginButton).click().perform()
+    time.sleep(3)
 
-time.sleep(3)
+    WebDriverWait(driver, 10000).until(EC.element_to_be_clickable((By.ID, 'signin_btn'))).click()
+    driver.find_element(By.ID, 'signin_btn').sendKeys(Keys.ENTER)
 
-WebDriverWait(driver, 10000).until(EC.element_to_be_clickable((By.ID, 'signin_btn'))).click()
-driver.find_element(By.ID, 'signin_btn').sendKeys(Keys.ENTER)
-
-
-driver.find_element(By.ID, "signin_btn").click()
-print("good")
-
-"""element = WebDriverWait(driver, 20).until(
-EC.presence_of_element_located((By.ID, "signin_btn")))# click login button
-element.click()"""
+    driver.find_element(By.ID, "signin_btn").click()
