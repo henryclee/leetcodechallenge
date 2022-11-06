@@ -1,7 +1,9 @@
-from bottle import route, run, template, static_file
+from bottle import route, run, template, static_file, post, request
 import getLeaders
 import getNewProblem
 import json
+import HELPERadd
+from authenticate import authenticateUser
 
 @route("/")
 def sendIndex ():
@@ -29,5 +31,17 @@ def sendLeaderBoard():
   #print (retVal)
 
   return (json.dumps(retVal))
+
+@post('/receiver')
+def receiver():
+    jsonBlob = request.body.read().decode()
+    userCred = json.loads(jsonBlob)
+    username = userCred['username']
+    password = userCred['password']
+    login = authenticateUser(username, password)
+    print(login)
+    HELPERadd.addUser_addQuestion(login["LEETCODE_SESSION"], login["csrftoken"])
+    loginJson = json.dumps(username)
+    return loginJson
 
 run(host='localhost', port=8080)
