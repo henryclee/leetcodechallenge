@@ -1,6 +1,6 @@
 import mysql.connector
 
-def getLeaders(name: str, problem: str):
+def getLeaders():
 
     config = {
         'user': 'hackathon',
