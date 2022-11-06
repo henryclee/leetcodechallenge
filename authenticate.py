@@ -30,11 +30,12 @@ def authenticate(user, password):
     WebDriverWait(driver, 10000).until(EC.element_to_be_clickable((By.ID, 'signin_btn'))).click()
     time.sleep(1)
     cookies = driver.get_cookies()
-    print(cookies)
     arr = []
     for cookie in cookies:
         if cookie["name"] == "LEETCODE_SESSION":
-            arr.extend([["name"], cookie["value"]])
+            arr.append(["LEETCODE_SESSION", cookie["value"]])
         if cookie["name"] == "csrftoken":
-            arr.extend([["name"], cookie["value"]])
+            arr.append(["csrftoken", cookie["value"]])
     return arr
+
+authenticate("UBHack2022", "TennisBalls123")
